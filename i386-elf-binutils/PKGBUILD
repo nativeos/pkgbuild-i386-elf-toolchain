@@ -8,8 +8,8 @@ url="https://www.gnu.org/software/binutils/"
 license=('GPL')
 groups=()
 depends=(zlib)
-source=("http://ftpmirror.gnu.org/binutils/binutils-$pkgver.tar.gz")
-sha256sums=("82a40a37b13a12facb36ac7e87846475a1d80f2e63467b1b8d63ec8b6a2b63fc")
+source=("http://ftpmirror.gnu.org/binutils/binutils-$pkgver.tar.bz2")
+sha256sums=("b5b14added7d78a8d1ca70b5cb75fef57ce2197264f4f5835326b0df22ac9f22")
 
 build() {
         mkdir -p "binutils-build"

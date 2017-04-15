@@ -9,8 +9,8 @@ license=('GPL')
 groups=()
 depends=(zlib libmpc)
 makedepends=(clang gmp mpfr)
-source=("http://ftpmirror.gnu.org/gcc/gcc-5.2.0/gcc-5.2.0.tar.gz")
-sha256sums=("87f3f1b3deebee26b6b71068c37201541586647c1ee64a505b06fc4129d6376a")
+source=("http://ftpmirror.gnu.org/gcc/gcc-5.2.0/gcc-5.2.0.tar.bz2")
+sha256sums=("5f835b04b5f7dd4f4d2dc96190ec1621b8d89f2dc6f638f9f8bc1b1014ba8cad")
 
 build() {
         mkdir -p "gcc-build"
