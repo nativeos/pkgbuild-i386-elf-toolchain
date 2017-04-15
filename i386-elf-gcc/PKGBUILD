@@ -1,0 +1,40 @@
+# Maintainer: Dani Rodríguez <dani@danirod.es>
+pkgname=i386-elf-gcc
+pkgver=5.2.0
+pkgrel=1
+pkgdesc="GNU Compiler Collection targetting i386-elf"
+arch=('i686' 'x86_64')
+url="https://gcc.gnu.org"
+license=('GPL')
+groups=()
+depends=(zlib libmpc)
+makedepends=(clang gmp mpfr)
+source=("http://ftpmirror.gnu.org/gcc/gcc-5.2.0/gcc-5.2.0.tar.gz")
+sha256sums=("87f3f1b3deebee26b6b71068c37201541586647c1ee64a505b06fc4129d6376a")
+
+build() {
+        mkdir -p "gcc-build"
+        cd "gcc-build"
+        ../gcc-$pkgver/configure --prefix=/usr \
+                                 --target=i386-elf \
+                                 --disable-multilib \
+                                 --disable-nls \
+                                 --disable-werror \
+                                 --without-headers \
+                                 --enable-languages=c,c++ \
+                                 CC=clang \
+                                 CXX=clang++
+
+        make all-gcc CPPFLAGS=''
+        make all-target-libgcc CPPFLAGS=''
+}
+
+package() {
+        cd gcc-build
+        make install-gcc DESTDIR=$pkgdir
+        make install-target-libgcc DESTDIR=$pkgdir
+
+        # Some files will cause conflict with host tools.
+        rm -rf $pkgdir/usr/share/info
+        rm -rf $pkgdir/usr/share/man/man7
+}
