@@ -1,0 +1,39 @@
+# Maintainer: Dani Rodríguez <dani@danirod.es>
+pkgname=i386-elf-binutils
+pkgver=2.25.1
+pkgrel=1
+pkgdesc="GNU Binutils targetting i386-elf"
+arch=('i686' 'x86_64')
+url="https://www.gnu.org/software/binutils/"
+license=('GPL')
+groups=()
+depends=(zlib)
+source=("http://ftpmirror.gnu.org/binutils/binutils-$pkgver.tar.gz")
+sha256sums=("82a40a37b13a12facb36ac7e87846475a1d80f2e63467b1b8d63ec8b6a2b63fc")
+
+build() {
+        mkdir -p "binutils-build"
+        cd "binutils-build"
+	../binutils-$pkgver/configure --prefix=/usr \
+                                      --target=i386-elf \
+                                      --disable-multilib \
+                                      --disable-nls \
+                                      --disable-werror
+
+        # Default CPPFLAGS is known to cause issues
+        # See https://bbs.archlinux.org/viewtopic.php?id=212317
+        make CPPFLAGS=''
+}
+
+check() {
+        cd binutils-build
+        make -k check
+}
+
+package() {
+        cd binutils-build
+        make install DESTDIR=$pkgdir
+
+        # These files conflict with host binutils
+        rm -rf $pkgdir/usr/share/info/
+}
