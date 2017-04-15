@@ -1,6 +1,6 @@
 # Maintainer: Dani Rodríguez <dani@danirod.es>
 pkgname=i386-elf-gcc
-pkgver=5.2.0
+pkgver=6.3.0
 pkgrel=1
 pkgdesc="GNU Compiler Collection targetting i386-elf"
 arch=('i686' 'x86_64')
@@ -8,9 +8,9 @@ url="https://gcc.gnu.org"
 license=('GPL')
 groups=()
 depends=(zlib libmpc)
-makedepends=(clang gmp mpfr)
-source=("http://ftpmirror.gnu.org/gcc/gcc-5.2.0/gcc-5.2.0.tar.bz2")
-sha256sums=("5f835b04b5f7dd4f4d2dc96190ec1621b8d89f2dc6f638f9f8bc1b1014ba8cad")
+makedepends=(gmp mpfr)
+source=("http://ftpmirror.gnu.org/gcc/gcc-$pkgver/gcc-$pkgver.tar.bz2")
+sha256sums=("f06ae7f3f790fbf0f018f6d40e844451e6bc3b7bc96e128e63b09825c1f8b29f")
 
 build() {
         mkdir -p "gcc-build"
@@ -21,9 +21,7 @@ build() {
                                  --disable-nls \
                                  --disable-werror \
                                  --without-headers \
-                                 --enable-languages=c,c++ \
-                                 CC=clang \
-                                 CXX=clang++
+                                 --enable-languages=c,c++
 
         make all-gcc CPPFLAGS=''
         make all-target-libgcc CPPFLAGS=''

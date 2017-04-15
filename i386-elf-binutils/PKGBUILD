@@ -1,6 +1,6 @@
 # Maintainer: Dani Rodríguez <dani@danirod.es>
 pkgname=i386-elf-binutils
-pkgver=2.25.1
+pkgver=2.28
 pkgrel=1
 pkgdesc="GNU Binutils targetting i386-elf"
 arch=('i686' 'x86_64')
@@ -9,7 +9,7 @@ license=('GPL')
 groups=()
 depends=(zlib)
 source=("http://ftpmirror.gnu.org/binutils/binutils-$pkgver.tar.bz2")
-sha256sums=("b5b14added7d78a8d1ca70b5cb75fef57ce2197264f4f5835326b0df22ac9f22")
+sha256sums=("6297433ee120b11b4b0a1c8f3512d7d73501753142ab9e2daa13c5a3edd32a72")
 
 build() {
         mkdir -p "binutils-build"
